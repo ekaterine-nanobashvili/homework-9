@@ -53,3 +53,39 @@ document.getElementById("next").addEventListener("click", function () {
 });
 
 getUsers(currentPage);
+
+// დავალება 1
+function getNames () {
+    fetch ('https://reqres.in/api/unknown', {
+        method: 'GET',
+    })
+    .then(function (textResponse) {
+        if (textResponse.status !== 200) {
+            throw textResponse.status;
+        }
+        return textResponse.json();
+    })
+    .then (function (JsResponse) {
+        const fragment = new DocumentFragment();
+        JsResponse.data.forEach((item) => {
+            let li = document.createElement("li");
+            li.innerText = `${item.name} ${"year:"} ${item.year}`
+            fragment.appendChild(li);
+        });
+        document.querySelector(".name-ul").appendChild(fragment);
+    })
+    .catch (function (error) {
+        if (error == 404) {
+            let p = document.createElement("p");
+            p.textContent = "Page Not FOund";
+            document.querySelector(".name-wrapper").appendChild(p);
+        }
+        else if (error == 500) {
+            let p = document.createElement("p");
+            p.textContent = "Server Error";
+            document.querySelector(".name-wrapper").appendChild(p);
+        }
+    })
+}
+// ამ დავალებაში ვერ ვიპოვე სხვა ფეიჯების ლინკები, ამიტომ მარტო ერთი ფეიჯია
+getNames();
