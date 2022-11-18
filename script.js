@@ -1,6 +1,6 @@
 "use strict";
 // დავალება 2
-let currentPage = 2;
+let currentPage = 1;
 let totalPages;
 function getUsers(page) {
     let request = new XMLHttpRequest();
