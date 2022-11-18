@@ -77,7 +77,7 @@ function getNames () {
     .catch (function (error) {
         if (error == 404) {
             let p = document.createElement("p");
-            p.textContent = "Page Not FOund";
+            p.textContent = "Page Not Found";
             document.querySelector(".name-wrapper").appendChild(p);
         }
         else if (error == 500) {
